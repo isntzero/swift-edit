@@ -69,6 +69,8 @@ namespace SwiftEdit
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 richTextBox1.Text = File.ReadAllText(openFileDialog.FileName);
+                // Mostrar el nombre del archivo en el título del formulario
+                this.Text = openFileDialog.SafeFileName;
             }
         }
 
@@ -79,6 +81,7 @@ namespace SwiftEdit
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 File.WriteAllText(saveFileDialog.FileName, richTextBox1.Text);
+
             }
         }
 
@@ -128,7 +131,7 @@ namespace SwiftEdit
             }
 
             // Actualizar el texto del toolStripStatusLabel1
-            toolStripStatusLabel1.Text = $"Línes: {line}, Columns: {column}, Characters: {totalChars},";
+            toolStripStatusLabel1.Text = $"Lines: {line} Columns: {column} Characters: {totalChars}";
         }
 
         private void richTextBox1_SelectionChanged(object sender, EventArgs e)
@@ -140,6 +143,7 @@ namespace SwiftEdit
         {
             UpdateStatus(); // Actualizar la información en tiempo real
         }
+
 
     }
 }
