@@ -7,14 +7,14 @@ using System.Windows.Forms;
 
 namespace SwiftEdit
 {
-    public partial class Form1 : Form
+    public partial class main : Form
     {
 
         // Declaración de la función externa DwmGetColorizationColor de la biblioteca dwmapi.dll
         [DllImport("dwmapi.dll")]
         private static extern int DwmGetColorizationColor(out int pcrColorization, out bool pfOpaqueBlend);
 
-        public Form1()
+        public main()
         {
             InitializeComponent();
             ApplyNightVisionTheme();
