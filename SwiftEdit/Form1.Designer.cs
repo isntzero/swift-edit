@@ -41,7 +41,6 @@
             clearToolStripMenuItem = new ToolStripMenuItem();
             richTextBox1 = new RichTextBox();
             statusStrip1 = new StatusStrip();
-            toolStripProgressBar1 = new ToolStripProgressBar();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -101,27 +100,27 @@
             // cutToolStripMenuItem
             // 
             cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            cutToolStripMenuItem.Size = new Size(180, 22);
+            cutToolStripMenuItem.Size = new Size(102, 22);
             cutToolStripMenuItem.Text = "Cut";
             cutToolStripMenuItem.Click += cutToolStripMenuItem_Click;
             // 
             // copyToolStripMenuItem
             // 
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            copyToolStripMenuItem.Size = new Size(180, 22);
+            copyToolStripMenuItem.Size = new Size(102, 22);
             copyToolStripMenuItem.Text = "Copy";
             copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
             // pasteToolStripMenuItem
             // 
             pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            pasteToolStripMenuItem.Size = new Size(180, 22);
+            pasteToolStripMenuItem.Size = new Size(102, 22);
             pasteToolStripMenuItem.Text = "Paste";
             // 
             // clearToolStripMenuItem
             // 
             clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            clearToolStripMenuItem.Size = new Size(180, 22);
+            clearToolStripMenuItem.Size = new Size(102, 22);
             clearToolStripMenuItem.Text = "Clear";
             clearToolStripMenuItem.Click += clearToolStripMenuItem_Click;
             // 
@@ -137,17 +136,12 @@
             // 
             // statusStrip1
             // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripProgressBar1, toolStripStatusLabel1 });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
             statusStrip1.Location = new Point(0, 428);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(800, 22);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripProgressBar1
-            // 
-            toolStripProgressBar1.Name = "toolStripProgressBar1";
-            toolStripProgressBar1.Size = new Size(100, 16);
             // 
             // toolStripStatusLabel1
             // 
@@ -166,6 +160,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
@@ -188,7 +183,6 @@
         private ToolStripMenuItem pasteToolStripMenuItem;
         private RichTextBox richTextBox1;
         private StatusStrip statusStrip1;
-        private ToolStripProgressBar toolStripProgressBar1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripMenuItem clearToolStripMenuItem;
     }

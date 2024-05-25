@@ -11,15 +11,28 @@ namespace SwiftEdit
         {
             InitializeComponent();
             ApplyNightVisionTheme();
+            UpdateStatus();
         }
 
         private void ApplyNightVisionTheme()
         {
-            this.BackColor = Color.FromArgb(30, 30, 30); // Fondo gris oscuro (hex: #1E1E1E)
-            menuStrip1.BackColor = Color.FromArgb(45, 45, 45); // Fondo menú gris oscuro (hex: #2D2D2D)
-            menuStrip1.ForeColor = Color.FromArgb(204, 204, 204); // Texto gris claro (hex: #CCCCCC)
-            richTextBox1.BackColor = Color.FromArgb(30, 30, 30); // Fondo gris oscuro (hex: #1E1E1E)
-            richTextBox1.ForeColor = Color.FromArgb(204, 204, 204); // Texto gris claro (hex: #CCCCCC)
+            // Colores night vision
+            Color backgroundColor = Color.FromArgb(30, 30, 30); // Fondo gris oscuro
+            Color menuStripBackgroundColor = Color.FromArgb(45, 45, 45); // Fondo del menú gris oscuro
+            Color menuStripTextColor = Color.FromArgb(204, 204, 204); // Texto gris claro
+            Color richTextBoxBackgroundColor = Color.FromArgb(30, 30, 30); // Fondo gris oscuro
+            Color richTextBoxTextColor = Color.FromArgb(204, 204, 204); // Texto gris claro
+            Color statusStripBackgroundColor = Color.FromArgb(45, 45, 45); // Fondo del status strip gris oscuro
+            Color statusStripTextColor = Color.FromArgb(204, 204, 204); // Texto gris claro
+
+            // Aplicar colores
+            this.BackColor = backgroundColor;
+            menuStrip1.BackColor = menuStripBackgroundColor;
+            menuStrip1.ForeColor = menuStripTextColor;
+            richTextBox1.BackColor = richTextBoxBackgroundColor;
+            richTextBox1.ForeColor = richTextBoxTextColor;
+            statusStrip1.BackColor = statusStripBackgroundColor;
+            toolStripStatusLabel1.ForeColor = statusStripTextColor;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,5 +84,32 @@ namespace SwiftEdit
         {
             richTextBox1.Copy();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfigureStatusStrip()
+        {
+            // Configurar StatusStrip
+            statusStrip1.Items.Add(toolStripStatusLabel1);
+        }
+
+        private void UpdateStatus()
+        {
+            int line = richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart) + 1;
+            int column = richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexOfCurrentLine() + 1;
+            int totalChars = richTextBox1.Text.Length;
+
+            toolStripStatusLabel1.Text = $"Línea: {line}, Columna: {column}, Caracteres: {totalChars}";
+        }
+
+        private void richTextBox1_SelectionChanged(object sender, EventArgs e)
+        {
+            UpdateStatus();
+        }
+
+
     }
 }
