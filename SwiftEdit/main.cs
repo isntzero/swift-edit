@@ -131,7 +131,7 @@ namespace SwiftEdit
             }
 
             // Actualizar el texto del toolStripStatusLabel1
-            toolStripStatusLabel1.Text = $"Lines: {line} Columns: {column} Characters: {totalChars}";
+            toolStripStatusLabel1.Text = $"Lines {line} Columns {column} Characters {totalChars}";
         }
 
         private void richTextBox1_SelectionChanged(object sender, EventArgs e)
