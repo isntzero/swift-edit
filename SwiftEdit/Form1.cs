@@ -2,16 +2,28 @@ using System;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace SwiftEdit
 {
     public partial class Form1 : Form
     {
+
+        // Declaración de la función externa DwmGetColorizationColor de la biblioteca dwmapi.dll
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmGetColorizationColor(out int pcrColorization, out bool pfOpaqueBlend);
+
         public Form1()
         {
             InitializeComponent();
             ApplyNightVisionTheme();
             UpdateStatus();
+
+            // Suscribirse a los eventos de cambio de texto y selección
+            richTextBox1.TextChanged += RichTextBox1_TextChanged;
+
+
         }
 
         private void ApplyNightVisionTheme()
@@ -102,7 +114,21 @@ namespace SwiftEdit
             int column = richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexOfCurrentLine() + 1;
             int totalChars = richTextBox1.Text.Length;
 
-            toolStripStatusLabel1.Text = $"Línea: {line}, Columna: {column}, Caracteres: {totalChars}";
+            // Contar las líneas del texto
+            int lineCount = richTextBox1.Lines.Length;
+
+            // Calcular el número de la línea actual
+            int currentLineNumber = richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart) + 1;
+
+            // Obtener el número total de columnas en la línea actual
+            int currentLineLength = 0; // Inicializar la longitud de la línea actual en 0
+            if (currentLineNumber <= richTextBox1.Lines.Length)
+            {
+                currentLineLength = richTextBox1.Lines[currentLineNumber - 1].Length;
+            }
+
+            // Actualizar el texto del toolStripStatusLabel1
+            toolStripStatusLabel1.Text = $"Línes: {line}, Columns: {column}, Characters: {totalChars},";
         }
 
         private void richTextBox1_SelectionChanged(object sender, EventArgs e)
@@ -110,6 +136,10 @@ namespace SwiftEdit
             UpdateStatus();
         }
 
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStatus(); // Actualizar la información en tiempo real
+        }
 
     }
 }
